@@ -1,0 +1,98 @@
+修改密码root update mysql.user set authentication_string=password('123qwe') where user='root' and Host = 'localhost';
+查看数据库 show databases;
+创建数据库 create database test; //数据库名称为test
+删除数据库 drop database test;
+切换数据库 use test; 切换到test数据库
+创建数据表 create table 表名 （字段名 数据类型 primary key 约束条件，字段名 数据类型）;primary key 主键 foreign key 外键, 
+约束条件 not null 非空约束，unique 唯一约束，在表中不能重复，default 默认约束。如果男性较多，插入记录没有这个值，默认赋值为男。auto_increment 自动生成主键值
+  主键设置方法 如 create table test_db(name varchar(24),deptid int(11), salary float, primary key(name,deptid)) name deptid为主键
+   创建外键 1创建表td_dept1主键为id  create table tb_dept1(id int(11) primary key,name varchar(22) not null,location varchar(50)) 
+	    2创建表tb_emp5 主键为id，并在tb_emp5上添加外键fk_emp_dept1,外键名称deptid，依赖于表tb_dept1的主键id
+		create table tb_emp5 (id int(11) primary key,name varchar(25),deptid int(11),salary float, constraint fk_emp_dept1 foreign key(deptid) references tb_dept1(id));
+查看数据表 show tables;
+查看表结构 describe 表名; 或 desc 表名;
+查看表详细结构 show create table 表名\G
+修改表名 alter table 旧表名 rename 新表名;
+修改字段数据类型 alter table 表名 modify 字段名 数据类型;
+修改字段名 alter table 表名 change 旧字段名 新字段名 新数据类型;
+添加字段 alter table 表名 add 新字段 数据类型 [约束条件] [first| after 已存在字段名] first添加在第一位 after添加到一个已存在字段的后面
+删除字段 alter table 表名 drop 字段名;
+修改字段排列位置 alter table 表名 modify 字段1 数据类型 first | after 字段2;
+修改表存储引擎 alter table 表名 enging=存储引擎名;
+删除外键约束 alter table 表名 drop foreign key 外键约束名;
+删除没有被关联的表 drop table [IF exists] 表1，表2，。。。表n;
+删除被其他表关联的主表 先删除关联 在删除主表
+删除表数据 delete from 表名
+current_date() 返回当前日期至 now() 返回时间和日期
+运算符 
+除了<=>,其他运算符于null比较都返回null
+= 相等返回1，不等返回0 ，其中一个是null 则返回null
+<=> 安全相等 其中一个为null，返回0，两个都为null 返回1
+<>, != 不等于 ，<=  小于定于,>=  大于等于 ,>大于 ,< 小于
+is null (num) 判断num 是不是null ，或者 num is not null
+num between 4 and 6  判断 num 是否在4-6之间
+least(1,2,3) 返回最小值 greatest(1,2,3) 返回最大值
+num in (1,2,4,'than') 判断num 有没有在1,2,4，‘than’ 中 。not in  和in 相反
+a like b  判断a字符串 是不是在b字符串中，_ 表示一个字符，% 表示任何字符
+a regexp b 正则匹配  b为正则
+not，！ 非；and，$$ 与； or，||  或； xor 异或
+| 位或， & 位与， ^ 位异或， << 位左移， >> 位右移， ~ 位取反，反正所有bit 
+函数
+abs(-3.1) 绝对值， pi()圆周率 ，sqrt(4) 平方根， mod(4,2)求余，ceil(),ceiling() 向下取整，floor() 向上取整，rand(x) 随机数 .若传入x，返回重复序列
+round(x,y) 四舍五入.y 表示保留小数位数， truncate(x,y) 舍去y小数后面的小数，sign(x) x正数返回1，负数返回 -1,0返回0。prw(x,y)或 power(x,y) 返回x的y次方。
+exp(x) 返回e的x次方 log(x) 返回x的自然对数，log10(x) 返回基数为10的x的对数。randians(x) 由角度转弧度，degrees(x) x由弧度转角度。 asin(x) 翻正玹值 sin(x)正玹值
+cos()余弦值，acos() 反余弦值。 tan() 正切值 atan() 反正切 ，cot() 余切
+char_length(str) 返回字符个数，length(str) 返回字节长度。concat(s1,s2,s3) 合并字符串，concat_ws(x,s1,s2)用x合并字符串。insert(s1,x,len,s1) 替换字符串。
+lower(str), lcase(str) 字符串转换为小写。upper(str),ucase(str) 转换为大写。left(str,n) 返回str最左边的n个字符 right(str,n) 同left。lpad(s1,len,s2)，rpad(sq,len,s2)字符串填充
+ltrim(str),rtrim(str),trim(str) 删除两端空格。trim(s1 from s2)删除字符串s2两端所有的s1,。repeat(s,n) 重复生成s，n次。space(n) 返回n个空格的字符串。
+replace(s,s1,s2) 将s中的s1替换为s2。strcmp(s1,s2) 字符串大小比较。substing(s,n,len),mid(s,n,len) 获取子字符串.
+locate(str1,str),position(str1 in str) ,insert(str,str1) 返回str1在str中的位置。reverse(s) 字符串逆序。elt(n,s1,s2,s3) 返回n处的字符串。field(s1,s,s1,s2) 返回s1在字符串的位置
+find_in_set(s1,s2) 返回s1在s2中的位置 make_set(x,s1,s2) 返回由x二进制指定相应位置的字符串组成的字符串。
+日期
+curdate(),current_date() 返回当前日期，curtime(),current_time() 返回当前时间，current_timestamp(),localtime(),now(),sysdate() 返回当前日期时间。unix_timestamp(date)返回时间秒
+from_unixtime() 将时间秒 转换成时间。utc_date() 返回当前utc日期(世界标准),utc_time 返回utc时间值。month(data) 返回月份。monthname(data) 返回月份名称，
+dayname(date)返回工作日英文 ，dayofweek(date) 返回日期对应的周索引。weekday(date) 返回对应的工作日索引week(date),weekkofyear(date) 返回date是一年中的第几周
+dayofyear(date) date是一年中的几天，dayofyearmonth(date)当date在月份中的位置，year(date) 返回年，quarter(date) 返回季度，minute(date) 返回时间中分钟 second(date) 返回秒
+extract(type from date)  返回type指定的值 可以是year month 等。time_to_sec(time) 时间转毫秒。sec_to_time() 毫秒转时间。计算日期时间函数date_add(),adddate() date_sub() 等
+date_format(date,format) 将日期时间格式化
+条件判断函数
+if(expr,v1,v2)expr ==true 返回v1，否则v2.
+ifbull(v1,v2) v1不是null 返回v1，否则v2
+case expr when v1 then r1 [when v2 then r2] expr == vn 则执行rn
+case when exrp then r1 else r2 end; exrp ==true 执行r1，否则r2
+系统信息
+select version() mysql版本，select connection_id() 当前用户连接数，show processlist;当前用户连接信息。
+select user()，select current_user()，select system_user()，sele session_user() 返回用户名 。
+charset(str) 返回字符集select collation(str) 返回字符串排列方式
+select last_insert_id() 查看最后一个自动生成的值 
+插入数据
+insert into 表名 vlaues (xx,xx),(xx,xxx);
+加密函数 password(str) 返回加密后的字符串。md5(str).encode(str,pasd_str) 用pasd_str 加密str。decode(str,pswd_str) 解密被encode 加密的字符串
+format(x,n) 将数字x，格式化n个小数。conv(n,from_base,to_base) 将n从from进制转换成to进制 inet_aton(ip) ip转数字 inet_atoa(num) 数字转ip
+get_lock(str,timeout) 得到锁， release_lock(str) 解开锁 is_free_lock(str) 判断锁是否可用 is_used_lock(str) 判断锁是否正在使用
+benchmark(count,expr) 重复执行count次expr操作 convert() 改变字符集 cast(x,as type) convert(x,type)  改变数据类型
+查询数据
+select * from 表名 //查询全部字段； * 改成指定字段 就会查询指定字段，多个指定字段用‘,’分开
+判断条件  = ，<>,!= 不定于, < <= ,> >=,between 两者之间,in(a,b,c) 查询是a,b,c中一个的，not 不在条件内的其他数据
+select number1,number2 from 表名 where number1 between 2 and 5; 查询number1是2到5的数据；number is null 查询number是空的数据
+select number1,number2 from 表名 where number1 in(1,5) order by number2 查询number1 是1或5的数据 并且按照number2排序
+select name from 表名 where name like 'b%' 查询name中已b开头的数据；like '%b%' name中存在b的数据；like 'b%y' b开头y结尾的
+%任意个字符，_ 一个字符； 通过and 连接多个查询条件， or 多条件查询
+select distinct name from 表名 查询name不重复的数据
+select name from 表名 order by name,number 查询的数据按照name 和number 排序
+select name form 表名 order by name desc 降序排列 asc是升序
+select name from 表名 order by name,number desc 查询的数据按照name升序 然后number降序排列
+分组统计
+select name,group_conut(*) as Total from 表名 group by name 根据name 相同的就行分组统计
+select name,group_conut(number) as Total from 表名 group by number 根据name 相同的就行分组统计出number
+select name,group_conut(number) as Total from 表名 group by number having count(name)>10 根据name 相同的就行分组统计出namer相同 大于10的
+select name,group_conut(*) as Total from 表名 group by name with rollup;with rollup会记录数据分组总和
+select * form 表名 limit 5， 4 返回查询结果的第5条后面的4条数据
+集合函数查询
+avg() 某列的平均值； count() 行数； max()最大值 ；min()最小值； sum() 和；
+select count(*) as count from 表名 返回表的总行数；
+多表查询 ，a表示表1，b表示表2
+select a.name b.name b.nuner b.id from a,b where a.id=b.id 查询a表id等于b.id的数据
+select a.name b.name b.nuner b.id from a inner join b on a.id=b.id 查询a表id等于b.id的数据 比where性能更好
+any some的子查询
+select num from a where num > any (select num from b) 查询a表中num大于b表中num的数据

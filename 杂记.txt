@@ -1,0 +1,80 @@
+<meta name="renderer" content="webkit">浏览器默认采用高速模式渲染页面（webkit）
+调用手机陀螺仪接口 window.DeviceOrientationEvent
+关闭Input键盘默认首字母大写：autocapitalize=”off”
+domContentLoaded 当所有DOM解析完后执行，onload 要等图片加载完才执行
+document.referrer 查看本页面的上一个页面是多少
+onpaste 向元素中粘贴文本时触发。
+contenteditable 编辑元素
+a标签执行函数
+<a href="javascript:alert('qaz');">alert</a>
+document.compatMode 返回页面渲染方式
+<meta http-equiv="X-UA-Compatible"content="IE=9; IE=8; IE=7; IE=EDGE"> 正常渲染方式
+// 告诉浏览器取消双击放大的效果
+<meta name="viewport" content="width=device-width">
+// 告诉浏览器取消双击放大的效果 touch-action: manipulation;
+移动web手册
+物理屏幕分辨率：screen.width/height（有兼容问题不建议使用）
+布局视口：document.documentElement.clientWidth(layout viewport)
+视觉视口：window.innerWidth(visual viewport)
+屏幕方向：window.orientation
+设备像素比：window.devicePixelRatio
+-webkit-overflow-scrolling:auto：平滑滚动
+document.createDocumentFragment()创建一个文档片段
+insertAdjacentHTML,InsertAdjacentText页面中指定元素相关位置新增文本内容,文档装载完成之后才能使用
+tabindex 属性规定元素的 tab 键控制次序
+window.orientation  手机翻转时触发
+CSS:
+currentColor 当前的文字颜色(或继承父级颜色)
+*::selection (*::-moz-selection)选中文字样式
+Chrome 中文界面下默认会将小于 12px 的文本强制按照 12px 显示,可通过加入 CSS 属性 -webkit-text-size-adjust: none; 解决。
+超链接访问过后hover样式就不出现了 a:link {} a:visited {} a:hover {} a:active {}
+盒子模型display:box
+获取表单全部内容
+jQuery('#form1').serialize(); => user_name=&user_email=&user_phone=13333333331
+jQuery('#form1').serializeArray(); => [] 一个数组，里面是每个字段的键值对
+color-gamut: p3 判断屏幕色域是sRGB 还是p3 广色域
+清除浮动塌陷方案：
+方案一：
+.clearfix:after {content:"\200B"; display:block; height:0; clear:both; }
+.clearfix { *zoom:1; } 
+方案二：
+.cf:before,.cf:after {  /* For modern browsers */
+content:"";
+display:table;
+}
+.cf:after { clear:both; }/* For IE 6/7 (trigger hasLayout) */
+.cf { zoom:1; }
+匹配（）中的数字和字母
+/(?!\()\w+(?=\))/g
+作用到父级的属性
+display:box //或inline-box 盒子模型
+box-orient: vertical //子元素方向默认值inline-axis 横排:horizontal:水平,inline-axis:行内方式排列,纵列:vertical：垂直,block-axis：块方式排列 inherit：继承
+box-direction:reverse //子元素的排列顺序:normal是默认reverse表示反转,inherit
+box-align:stretch 内部剩余空间垂直使用,stretch为默认值，为拉伸start表示顶边对齐，end为底部对齐，center为居中对齐，baseline表示基线（英文字母o,m,n等的底边位置线）对齐。
+box-pack:justify; 父标签水平遗留空间的使用start:left对齐; | end:right对齐; | center:居中对齐; | justify:两端对齐*/
+box-lines:single;/*子元素是可以换行显示 single是默认值不换行，multiple:换行*/
+作用的子元素
+box-flex: 3;/*是否允许当前子元素伸缩，按比例分配高度或宽度*/
+box-flex: 2;/*在容器中的排序，越大越在前*/
+触发bfc特效
+float的值不为none。
+overflow的值为auto,scroll或hidden。
+display的值为table-cell, table-caption, inline-block中的任何一个。
+position的值不为relative和static。
+盒子模型display:flex
+返回上一页兼容性写法  onclick="javascript:window.history.back();return false;"
+容器属性
+display:flex| inline-flex;
+flex-direction: row | row-reverse | column | column-reverse;// 方向
+flex-wrap: nowrap | wrap | wrap-reverse; 换行
+flex-flow: <flex-direction> || <flex-wrap>;/*主轴方向和换行简写*/
+justify-content: flex-start | flex-end | center | space-between | space-around; 水平对齐方式
+align-items: flex-start | flex-end | center | baseline | stretch;交叉轴对齐方式
+align-content: flex-start | flex-end | center | space-between | space-around | stretch;多主轴对齐
+子元素对齐方式
+order: 0;/*排序：数值越小，越排前，默认为0*/
+flex-grow: 0; /*放大：默认0（即如果有剩余空间也不放大，值为1则放大，2是1的双倍大小，以此类推）*/
+flex-shrink: 1;/*缩小：默认1（如果空间不足则会缩小，值为0不缩小）*/
+flex-basis: 0 /*固定大小：默认为0，可以设置px值，也可以设置百分比大小*/
+flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]/*flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto，*/
+align-self: auto | flex-start | flex-end | center | baseline | stretch;/*单独对齐方式：自动（默认） | 顶部对齐 | 底部对齐 | 居中对齐 | 上下对齐并铺满 | 文本基线对齐*/

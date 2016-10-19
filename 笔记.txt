@@ -1,0 +1,125 @@
+requestAnimationFrame 动画函数
+div.scrollTop   当子元素高度超过父级时，修改scrollTop可以修改现在子元素的位置
+scrollIntoView()：(最兼容)如果给这个方法传入true，或者不传入参数，那么窗口滚动之后会让调用元素的顶部与视口顶部尽可能平齐。如果传入FALSE，调用元素会尽可能全部出现在(有兼容性)
+scrollIntoViewIfNeeded(alignCenter)：如果为true，则表示尽量将元素显示在视口中部；
+scrollBy(xnum,ynum)：xnum 必需，把文档向右滚动的像素数；ynum必需，把文档向下滚动的像素数。
+function focus() { //页面下滑方法
+    if (document.hasFocus()) {
+        window.scrollBy(0,1);
+    }
+}
+div.getAttribute('test') 返回指定属性名的属性值。div.setAttribute('test','aaa')  设置属性值
+div.contains(div1) 判断div是不是div1的祖先节点
+div.compareDocumentPosition(div1)
+返回4  div节点在div1节点前面
+返回2  div1节点在div节点前面
+返回20 div节点是div1的祖先节点
+返回0  div阶段与div1节点一致
+返回1  div1节点在不同的文档中
+返回8  div1节点包含div节点
+返回32  浏览器私有熟悉
+返回16	div节点包含div1节点
+返回10  div1是div的祖先节点并且位于其前
+
+div.classList  //返回div class的数组。
+div.classList.add('s') 给div添加一个 class 's'
+div.classList.remove('s')  div移除一个class ‘s’
+div.classList.toggle('s')  div有class “s”则删除，没有则添加
+div.classList.contains('s')  判断div中是否有“s” 这个class
+div.classList.item(0)  返回div中class的第0个 和div.classList[0]  一样
+
+
+document.activeElement 焦点管理属性  会引用Dom中当前获得了焦点的元素
+document.hasFocus()方法，这个方法用于确定文档是否获得了焦点
+document.readyState 返回 loading 文档加载中 ；complete  加载完毕
+document.compatMode 返回CSS1Compat浏览器采用了标准模式 ；BackCompat为混杂模式
+document.charset 返回文档实际使用字符集
+document.defaultCharset  文档默认的字符集
+
+dataset 获取通过data-设置的属性的指。
+如<div data-say="123"></div>  div.dataset.ss 返回123（多个"-"用驼峰化取值）
+div.dataset.s1 = 'aaa' 给div添加一个 data-s1="aaa"  属性
+
+div.outerHTML = "<p>ss</p>"  会将div 替换成p
+div.insertAdjacentHTML()  两个参数：一个是要插入的位置；另一个是要插入的HTML文本
+	beforebegin：在当前元素之前插入一个相邻的同辈元素；
+	afterend：在当前元素之后插入一个相邻的同辈元素；
+	beforeend：在最后一个子元素之后再插入一个新的子元素；
+	afterbegin：在第一个子元素之前再插入一个新的子元素；
+div.getBoundingClientRect() 返回div在document中的位置。及width，height
+css   clip-path 了解
+获取伪类中的内容
+window.getComputedStyle(document.body, ":after").getPropertyValue("border-top");
+":after" 不用，表示不是伪类 或传入null ie(6-8)不兼容 用currentStyle(不支持伪类)作兼容  getPropertyValue获取getComputedStyle中的样式的结果(与getAttribute做兼容)
+
+div.querySelector('p') //获取div中的第一个子p
+div.querySelectorAll('p')  获取div中所有p，返回一个数组
+div.matchesSelector('div.ss') 调用元素与选择符匹配，返回true (兼容性)
+div.getBoundingClientRect() 返回节点先对视口的位置 ie8以前文档左上角为(2,2) 其他（0,0）
+<input type="file" accept= accept="audio/*,video/*,image/*" />只能上传视频，图片，音频 
+清除浮动
+.clearfix:after { 
+    content:"\200B"; 
+    display:block; 
+    height:0; 
+    clear:both; 
+} 
+.clearfix {*zoom:1;}/*IE/7/6*/
+移动端软键盘弹出
+Element.scrollIntoView() 方法让当前的元素滚动到浏览器窗口的可视区域内。
+字符串常用方法
+str.charAt()            返回在指定位置的字符
+str.charCodeAt()        返回在指定的位置的字符的 Unicode 编码
+str.concat()  		字符串连接
+str.indexOf() 		字符串位置
+str.lastIndexOf() 	从后向前搜索字符串。
+str.match() 		找到一个或多个正则表达式的匹配
+str.replace() 		替换与正则表达式匹配的子串
+str.search() 		检索与正则表达式相匹配的值
+str.slice()  		提取字符串的片断，并在新的字符串中返回被提取的部分
+str.split() 		把字符串分割为字符串数组
+str.substr() 		从起始索引号提取字符串中指定数目的字符
+str.substring() 	提取字符串中两个指定的索引号之间的字符。
+str.toLowerCase()	把字符串转换为小写。
+str.toUpperCase()	把字符串转换为大写。
+数组常用方法
+arr.concat() 		连接两个或更多的数组，并返回结果
+arr.join()		把数组转化成字符串，元素通过指定的分隔符进行分隔
+arr.pop()		删除并返回数组的最后一个元素
+arr.push()		向数组的末尾添加一个或更多元素，并返回新的长度
+arr.reverse()		颠倒数组中元素的顺序。
+arr.shift()		删除并返回数组的第一个元素
+arr.slice()		从某个已有的数组返回选定的元素
+arr.sort()		对数组的元素进行排序(若a小于b,在排序后的数组中a应该出现在b之前)
+arr.splice()		删除元素，并向数组添加新元素。
+arr.unshift() 		向数组的开头添加一个或更多元素，并返回新的长度。
+arr.reduce()		用指定的函数对数组元素进行组合，生成单个值
+arr.indexOf()		返回数组元素的索引
+
+
+//继承精髓
+function inherit(sub,sup){
+	var pro = newObject(sup.prototype);
+	pro.constructor = sub;		
+	sub.prototype = pro;
+		}
+function newObject(o){
+	function F(){}
+	F.prototype = o;
+	return new F;
+		}
+
+//下面是一个利用Blob对象,不经过服务器，生成可下载文件的例子(不兼容)。  
+var blob = new Blob(["Hello World"]);  
+var a = document.createElement("a");
+a.href = window.URL.createObjectURL(blob);
+a.download = "hello-world.txt"; 
+a.textContent = "Download Hello World!";  
+document.body.appendChild(a);
+
+a标签target=_blank 漏洞
+添加rel=noopener 修复 
+或者 
+var otherWindow = window.open('http://keenwon.com');
+otherWindow.opener = null;
+otherWindow.location = url;
