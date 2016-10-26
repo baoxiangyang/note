@@ -63,6 +63,12 @@ display的值为table-cell, table-caption, inline-block中的任何一个。
 position的值不为relative和static。
 盒子模型display:flex
 返回上一页兼容性写法  onclick="javascript:window.history.back();return false;"
+
+!后面跟的字符会被转换成布尔值
++后面跟的字符会被转换成数值
+[]后面跟的字符会被转换成字符串
+
+
 容器属性
 display:flex| inline-flex;
 flex-direction: row | row-reverse | column | column-reverse;// 方向

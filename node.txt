@@ -16,8 +16,14 @@ process
  process.exit(code) 杀死进程
  process.stdout.on('data',function(data){}) 给输出流绑定data事件
  process.stdin.setEnding('uft8') 设置输入流的编码方式。同理可用作stdout，stderr
+ process.env 当前运行环境
 
 fs
+ fs.stat('/a/b',callback(err,data)) 查询文件的统计信息，如大小创建时间，权限等
+ fs.open('filename',callback) 打开文件
+ fs.close() 关闭文件
+ fs.write() 写入文件
+ fs.read() 读取文件
  fs.writeFile('filename',data,callback(err))   异步的吧data写入到filename中 如果文件已存在着替换
  fs.appendFile('filename',data,callback(err))  将data追加的filename中，filename不存在，则创建
  fs.exists('filename',callback(exists))  判断filename是否存在，存在exists为真
@@ -55,11 +61,13 @@ url
  
 path
  path.normalize('path///norname/hi/....') 将不标准的路径，解析为标准的。返回为 path/norname/hi  
- path.json('//s','/b','//vv') 反解析成标准路径。 /s/b/vv
+ path.json('//s','/b','//vv') 连接路径。 /s/b/vv
  path.dirname('/foo/str/cool/one')  返回路径中的，目录名foo/str/cool
  path.basename('/ss/aa/bb.html')  返回路径中的最后一部分。 返回bb.html ;path.basename('/ss/aa/bb.html','.html')返回bb
  path.extname('/ss/bb/cc.html') 返回路径中文件的扩展名 html。如果没有返回“ .”则空字符串
- path.resolve('/foo/bar', './baz') 返回 '/foo/bar/baz'
+ path.resolve('/foo/bar', './baz') 解析路径 '/foo/bar/baz'
+ path.relative('/data/a/test','/data/a/b/c') 查找两个绝对路径的相对路径 ../../b/c
+
 querystring
  querystring.stringify({foo:"bar",cool:["aa","bb"]}) foo=bar&cool=aa&cool=bb
  querystring.stringify({foo:"bar",cool:["aa","bb"]},"*","#") foo#bar*cool#aa*cool#bb
@@ -78,6 +86,12 @@ child_process
  child_process.exec(command.callback(err,stdout,stderr)) 创建一个子线程
  child_process.execFile(file,callback(err,stdout,stderr)) 创建子进程直接运行file文件
  child_process.fork() 可直接运行nodejs模块
- 
+//调用cmd命令，设置node找到cmd.exe => set path=%windir%system32;%path%
+ var exec = require('child_process').exec;
+ child = exec('dir *.*', function(err,stdout,stderr){
+	console.log('err: '+ err);
+	console.log('stdout: '+ stdout);
+	console.log('stderr: '+ stderr);
+ })
  
 
