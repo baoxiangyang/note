@@ -1,0 +1,2 @@
+componentDidMount 组件已经安装完毕
+componentWillUnmount 组件将要被卸载

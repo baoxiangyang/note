@@ -123,3 +123,15 @@ a标签target=_blank 漏洞
 var otherWindow = window.open('http://keenwon.com');
 otherWindow.opener = null;
 otherWindow.location = url;
+
+
+switch 做区域判断
+var num = 25
+switch (true){
+  case num < 0:
+	alert('小于0');break;
+  case num >25: 
+	alert('大于25')；break;
+  default:
+	alert('')
+}
