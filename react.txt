@@ -1,2 +1,68 @@
-componentDidMount 组件已经安装完毕
+componentWillMount 组件装载发生之前被调用。它在render()之前调用
+componentDidMount 组件装载到DOM后立即调用
+componentWillReceiveProps 安装好的组件接收新props之前被调用
+componentWilUpdate 当组件在收到新的props或state时，渲染之前会立即调用这个方法
+componentDidUpdate 在重新渲染DOM之后被调用
 componentWillUnmount 组件将要被卸载
+shouldComponentUpdate 是否更新组件 返回false 不更新
+component.forceUpdate(callback)
+	调用forceUpdate()会导致在组件上调用render()，跳过shouldComponentUpdate() 这将触发子组件的正常生命周期方法，包括每个子	组件的shouldComponentUpdate()方法。 如果标记更改，React仍将更新DOM。
+创建react
+React.Component
+React.PureComponent 
+	React.PureComponent表面上很像React.Component,但是它实现了shouldComponentUpdate()对props和state的进行浅比较。
+React.createClass()
+React.createElement(component, props, children)
+
+创建组件的实例并将其插入DOM时，会依次调用这些方法
+constructor()-》 componentWillMount() -》render() -》componentDidMount()
+更新可以由prop或者state的改变引起
+componentWillReceiveProps()-》shouldComponentUpdate()-》componentWillUpdate()-》render() -》componentDidUpdate()
+DOM中删除组件时
+componentWillUnmount()
+
+处理react
+React.cloneElement()
+	React.cloneElement(element,[props],[...children])
+React.isValidElement() 判断参数是否是一个合法的的ReactElement，并返回Boolean值
+React.Children
+	处理this.props.children中那些不透明的数据结构的一些工具函数。
+React.Children.map
+React.Children.forEach
+React.Children.count
+	返回children中的组件总数。
+React.Children.toArray
+	将子元素中的不透明数据结构作为一个一维数组返回。如果你想在render方法中操作children集合，特别是如果你想在传递它之前重	新排序或切割this.props.children.
+React.Children.only
+
+PropTypes进行类型检测
+React.PropTypes.isRequired
+React.PropTypes.array
+React.PropTypes.bool
+React.PropType.func
+React.PropTypes.number
+React.PropTypes.object
+React.PropTypes.string
+React.PropTypes.symbol
+React.PropTypes.node
+React.PropTypes.element
+React.PropTypes.instanceOf()
+React.PropType.oneOf()
+React.PropType.oneOfType()
+React.PropType.arrayOf()
+React.PropType.objectOf()
+React.PropTypes.shape()
+React.PropTypes.any
+验证prop是可以是多种类型之一的对象。
+
+MyComponent.propTypes = {
+    optionalUnion: React.PropTypes.oneOfType([
+        React.PropTypes.string,
+        React.PropTypes.number,
+        React.PropTypes.instanceOf(Message)
+    ]),
+}
+设置类组件的默认props
+MyComponent.defaultProps = {
+	color:'red'
+} 
