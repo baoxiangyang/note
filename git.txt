@@ -7,4 +7,4 @@ git checkout –readme.txt 撤销工作区的修改
 git merge dev 将dev分支合并到当前分支
 ssh-agent bash //ssh-add 报错解决办法
 git branch -a  查看所有分支
-
+git rm 文件路径 -r 删除文件
