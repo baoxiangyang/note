@@ -135,3 +135,20 @@ switch (true){
   default:
 	alert('')
 }
+//amd, cmd,CommonJS Ä£¿é¿ª·¢
+(function(){
+    var Widget = function(){....};
+
+    // AMD && CMD
+    if(typeof define === 'function'){
+        define(function(){
+            return Widget;
+        });
+    // CommonJS
+    }else if(typeof module !== "undefined" && module !== null){
+        module.exports = Widget;
+    // window
+    }else{
+        window.Widget = Widget;
+    }
+})();
