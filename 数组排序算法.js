@@ -15,7 +15,7 @@ function bubbleSort(arr){
 
 // 选择排序
 function selectionSort(arr){
-	var len = arr.length, minIndex, temp;
+	var len = arr.length, minIndex, temp, i;
 	for(i = 0; i < len -1; i++){
 		minIndex = i;
 		for(var j = i +1; j < len; j++){
@@ -96,7 +96,7 @@ function merge(left, right){
 //快速排序
 function quickSort(arr, left, right) {
   var len = arr.length,
-    partitionIndex,
+    partitionIndex;
     left = typeof left != 'number' ? 0 : left,
     right = typeof right != 'number' ? len - 1 : right;
   if (left < right) {
@@ -106,7 +106,7 @@ function quickSort(arr, left, right) {
   }
   return arr;
 }
-function partition(arr, left ,right) {     //分区操作
+function partition(arr, left, right) {     //分区操作
     var pivot = left,                      //设定基准值（pivot）
         index = pivot + 1;
     for (var i = index; i <= right; i++) {
