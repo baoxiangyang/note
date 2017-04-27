@@ -22,3 +22,21 @@ function connect () {
 
 var db;
 connect() 
+
+监控unhandledRejection事件来捕获所有未处理的Promise错误
+process.on('unhandledRejection', (err) =>
+{
+    console.log(err)
+})
+
+
+sublime3配置按键功能
+{
+  "variants":  
+    [  
+      {  
+        "name": "npm run kill",  
+        "cmd": ["taskkill","/F", "/IM", "node.exe"]  
+      }  
+    ]  
+}

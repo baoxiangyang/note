@@ -4,8 +4,10 @@ git checkout –b name 创建切换分支
 git reset  --hard 6fcfc89 恢复历史版本
 git reflog //获取所有历史版本
 git checkout –readme.txt 撤销工作区的修改
+git checkout -b "branch-name" 创建并切换分支
 git merge dev 将dev分支合并到当前分支
 ssh-agent bash //ssh-add 报错解决办法
 git branch -a  查看所有分支
 git rm 文件路径 -r 删除文件
 git push origin :remote_branch 删除远程分支
+git branch -D remote_branch  删除本地分支
