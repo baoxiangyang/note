@@ -14,3 +14,36 @@ remove 删除文档
  db.person.remove(query,justOne)query：BSON类型，删除文档的条件。
  justOne：布尔类型，true：只删除一个文档，false：默认值，删除所有符合条件的文档。
  db.person.remove({status:"D"})
+
+//根据已有数据批量更新
+changeState = function(doc){
+    taskList = doc.taskList;
+    for(var i in taskList){
+        taskList[i].state = 'ST02';
+    }
+    db.test.save(doc)
+}
+ db.test.find({"_id" : ObjectId("57133995fb5f8930d0e9b81a")}).forEach(changeState)
+mongodb3.4 添加认证创建用户
+第一步: 在admin 下添加一个管理用户
+	use admin
+	db.createUser({user:"admin",pwd:"password",roles:["root"]})
+	使用db.auth("admin", "password")认证
+第二步：开启验证
+	编辑/etc/mongod.conf (也可修改mongodb.conf 添加auth=true)
+	修改 #security: 为(注意空格格式)
+	security:
+  	  authorization: enabled
+	重启数据库 service mongod restart
+第三步: 创建普通用户
+	先用一步的管理用户 登陆，在切换到需要添加用户的数据库
+	use test
+	db.createUser({user:"test",pwd:"123456",roles:[{role:'dbOwner',db:'test'}]})
+	db.auth("test", "123456")
+	如果第一次登陆 提示没有权限 请在执行一次db.auth("test", "123456")
+注意：添加userAdmin,dbAdmin累管理用户认证后，还是没有权限不知道为什么
+删除用户
+	use admin
+	db.systems.users.remmove({user:'admin'})
+	
+	

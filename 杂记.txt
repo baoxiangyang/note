@@ -80,6 +80,8 @@ document.addEventListener("WeixinJSBridgeReady", function(){
 https://clipboardjs.com/
 document.execCommand('copy')
 
+//二维数组转一维数组
+Array.prototype.concat.apply([], [1,[2,3],4])
 容器属性
 display:flex| inline-flex;
 flex-direction: row | row-reverse | column | column-reverse;// 方向
