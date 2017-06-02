@@ -11,3 +11,4 @@ git branch -a  查看所有分支
 git rm 文件路径 -r 删除文件
 git push origin :remote_branch 删除远程分支
 git branch -D remote_branch  删除本地分支
+git rm raindow -r -f  删除文件夹

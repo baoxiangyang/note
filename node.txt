@@ -1,4 +1,5 @@
-﻿开启严格模式  'use strict'
+﻿node调试 node --inspect bin/www
+开启严格模式  'use strict'
 let 创建块级变量 let定义的变量只能在该模块内有效 
 const 声明一个常量
 class 声明一个类    constructor类的方法，一个类只能有一个此方法
